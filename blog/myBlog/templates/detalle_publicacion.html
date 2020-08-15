@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="es-co">
-<head>
-	<meta charset="UTF-8">
-	<title>{{ post.titulo }}</title>
-</head>
-<body>
-<div>
-	<h1>{{ post.titulo }}</h1>
-	<small>By: {{ post.autor.first_name }} {{ post.autor.last_name }}</small><br>
-	<hr>
-	<br>
-	<p>{{ post.cuerpo }}</p><br><br>
-	<a href="{% url 'home' %}">Volver</a>
-
-</div>
-</body>
-</html>
+{% extends 'layout.html' %} {% block content %}
+<h1>
+    {{ post.titulo }}</h1>
+<small>By: {{ post.autor.first_name }} {{ post.autor.last_name }}</small><br>
+<hr>
+<br>
+<p>{{ post.cuerpo }}</p><br><br>
+<a class="btn btn-secondary" href="{% url 'home' %}">Volver</a> {% endblock %}

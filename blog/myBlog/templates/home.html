@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="es-co">
-<head>
-	<meta charset="UTF-8">
-	<title>Home</title>
-</head>
-<body>
-<div>
-	<h1>Publicación</h1>
-	<ul>
-		{% for post in object_list %}
-		<li><a href="{% url 'detalle-publicacion' post.pk %}">{{ post.titulo }}</a> - {{post.autor.first_name}} {{post.autor.last_name}} <br> {{post.cuerpo}}</li>
-		{% endfor %}
-	</ul>
-</div>
-</body>
-</html>
+{% extends 'layout.html' %} 
+
+{% block content %}
+
+<h1>Publicación</h1>
+<ul>
+    {% for post in object_list %}
+    	<li><a href="{% url 'detalle-publicacion' post.pk %}">{{ post.titulo }}</a> - {{post.autor.first_name}} {{post.autor.last_name}} <br> {{post.cuerpo}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
