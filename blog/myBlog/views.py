@@ -1,6 +1,6 @@
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm, EditForm
 
 class HomeView(ListView):
 	model = Post
@@ -9,10 +9,14 @@ class HomeView(ListView):
 
 class DetallePublicacion(DetailView):
 	model = Post
-	template_name = 'detalle_publicacion.html'
+	template_name = 'Post/show.html'
 
 class CrearPublicacion(CreateView):
 	model = Post
 	form_class = PostForm
-	template_name = 'create.html'
-	#fields = '__all__'
+	template_name = 'Post/create.html'
+
+class ActualizarPublicacion(UpdateView):
+	model = Post
+	template_name = 'Post/update.html'
+	form_class = EditForm 

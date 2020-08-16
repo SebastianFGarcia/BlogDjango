@@ -1,11 +1,9 @@
-{% extends 'layout.html' %} 
-
-{% block content %}
+{% extends 'layout.html' %} {% block content %}
 
 <h1>Publicación</h1>
 <ul>
     {% for post in object_list %}
-    	<li><a href="{% url 'detalle-publicacion' post.pk %}">{{ post.titulo }}</a> - {{post.autor.first_name}} {{post.autor.last_name}} <br> {{post.cuerpo}}</li>
+    <li><a href="{% url 'detalle-publicacion' post.pk %}">{{ post.titulo }}</a> - {{post.autor.first_name}} {{post.autor.last_name}} <a href="{% url 'actualizar-publicacion' post.pk %}">[Editar]</a></li>
     {% endfor %}
 </ul>
 {% endblock %}

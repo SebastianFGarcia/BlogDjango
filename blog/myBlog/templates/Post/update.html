@@ -1,0 +1,10 @@
+{% extends 'layout.html' %} {% block title %} Editar {% endblock %} {% block content %}
+
+<h1 class="h1">Editar Publicacion</h1>
+<div class="form-group">
+    <form action="" method="post">
+        {% csrf_token %} {{form.as_p}}
+        <button class="btn btn-primary" type="submit">Actualizar</button>
+    </form>
+</div>
+{% endblock %}

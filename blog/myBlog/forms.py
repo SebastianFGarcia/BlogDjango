@@ -11,3 +11,13 @@ class PostForm(forms.ModelForm):
             'autor': forms.Select(attrs={'class':'form-control'}),
             'cuerpo': forms.Textarea(attrs={'class':'form-control', 'placeholder': 'Escriba el Cuerpo de la publicación'}),
         }
+
+class EditForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('titulo','titulo_tag','cuerpo')
+        widgets = {
+            'titulo': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Escriba el titulo'}),
+            'titulo_tag': forms.TextInput(attrs={'class':'form-control'}),
+            'cuerpo': forms.Textarea(attrs={'class':'form-control', 'placeholder': 'Escriba el Cuerpo de la publicación'}),
+        }
