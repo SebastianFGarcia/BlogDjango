@@ -1,7 +1,7 @@
 {% extends 'layout.html' %} {% block title %} {{ post.titulo_tag }} {% endblock %} {% block content %}
 <h1>
     {{ post.titulo }}</h1>
-<small>By: {{ post.autor.first_name }} {{ post.autor.last_name }} <a  href="{% url 'actualizar-publicacion' post.pk %}">[Editar]</a> <a  href="{% url 'eliminar-publicacion' post.pk %}">[Eliminar]</a><br></small>
+<small>By: {{ post.autor.first_name }} {{ post.autor.last_name }} - {{post.fecha_publicacion}} <a  href="{% url 'actualizar-publicacion' post.pk %}">[Editar]</a> <a  href="{% url 'eliminar-publicacion' post.pk %}">[Eliminar]</a><br></small>
 <hr>
 <br>
 <p>{{ post.cuerpo }}</p><br><br>
