@@ -1,5 +1,4 @@
-{% extends 'layout.html' %} {% block title %} Editar {% endblock %} {% block content %}
-
+{% extends 'layout.html' %} {% block title %} Editar {% endblock %} {% block content %} {% if user.is_authenticated %}
 <h1 class="h1">Editar Publicacion</h1>
 <div class="form-group">
     <form action="" method="post">
@@ -7,4 +6,15 @@
         <button class="btn btn-primary" type="submit">Actualizar</button>
     </form>
 </div>
-{% endblock %}
+{% else %}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <h1 class="text-center">Oops!</h1>
+        <h2 class="text-center">No puedes ingresar a este sitio</h2>
+        <div class="text-center">
+            <a class="btn btn-secondary" href="{% url 'home' %}">Volver</a>
+        </div>
+    </div>
+</div>
+{% endif %} {% endblock %}
