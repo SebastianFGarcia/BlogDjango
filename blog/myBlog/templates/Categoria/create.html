@@ -1,0 +1,20 @@
+{% extends 'layout.html' %} {% block title %} Crear Categoria {% endblock %} {% block content %} {% if user.is_authenticated %}
+<h1 class="h1">Crear Nueva Categoria</h1>
+<div class="form-group">
+    <form action="" method="post">
+        {% csrf_token %} {{form.as_p}}
+        <button class="btn btn-primary" type="submit">Enviar</button>
+    </form>
+</div>
+{% else %}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <h1 class="text-center">Oops!</h1>
+        <h2 class="text-center">No puedes ingresar a este sitio</h2>
+        <div class="text-center">
+            <a class="btn btn-secondary" href="{% url 'listar_categoria' %}">Volver</a>
+        </div>
+    </div>
+</div>
+{% endif %} {% endblock %}
