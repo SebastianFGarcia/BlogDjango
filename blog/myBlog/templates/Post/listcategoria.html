@@ -1,0 +1,14 @@
+{% extends 'layout.html' %} {% block content %} {% if categorias_post %}
+<h1>{{ categoria.categorias.nombre }}</h1>
+
+
+<ul>
+    {% for post in categorias_post %}
+    <li><a href="{% url 'detalle-publicacion' post.pk %}">{{ post.titulo }}</a> - {{post.autor.first_name}} {{post.autor.last_name}} - {{post.fecha_publicacion}} {% if user.is_authenticated %} -
+        <a href="{% url 'actualizar-publicacion' post.pk %}">[Editar]</a>
+        <a href="{% url 'eliminar-publicacion' post.pk %}">[Eliminar]</a></li>
+    {% endif %}
+    <p class="text-justify">{{post.cuerpo | slice:":250" | safe}}....</p>
+    {% endfor %}
+</ul>
+{% else %} {% include 'Errors/no_ingreso.html' %} {% endif %} {% endblock %}

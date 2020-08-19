@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.shortcuts import render
 from .models import Post, Categoria
 from .forms import PostForm, EditForm, CategoriaForm
 
@@ -46,3 +47,8 @@ class EliminarCategoriaView(DeleteView):
 	model = Categoria
 	template_name = 'Categoria/delete.html'
 	success_url = reverse_lazy('listar_categoria')
+
+def CategoriaView(request, pk):
+	categorias_post = Post.objects.filter(categorias_id = pk)
+	categoria = categorias_post.get()
+	return render(request, 'Post/listcategoria.html', { 'categoria' : categoria, 'categorias_post' : categorias_post })
