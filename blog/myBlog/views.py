@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from django.shortcuts import render
+from django.urls import reverse_lazy, reverse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
 from .models import Post, Categoria
 from .forms import PostForm, EditForm, CategoriaForm
 
@@ -9,11 +10,21 @@ class HomeView(ListView):
 	template_name = 'home.html'
 	ordering = 	['-fecha_publicacion']
 
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['categorias'] = Categoria.objects.all()
+		return context
 
 class DetallePublicacion(DetailView):
 	model = Post
 	template_name = 'Post/show.html'
-
+	def get_context_data(self, *args, **kwargs):
+		context = super().get_context_data(**kwargs)
+		stuff = get_object_or_404(Post, id= self.kwargs['pk'])
+		total_likes = stuff.total_likes()
+		context['categorias'] = Categoria.objects.all()
+		context['total_likes'] = total_likes
+		return context
 class CrearPublicacion(CreateView):
 	model = Post
 	form_class = PostForm
@@ -50,5 +61,10 @@ class EliminarCategoriaView(DeleteView):
 
 def CategoriaView(request, pk):
 	categorias_post = Post.objects.filter(categorias_id = pk)
-	categoria = categorias_post.get()
+	categoria = categorias_post.first()
 	return render(request, 'Post/listcategoria.html', { 'categoria' : categoria, 'categorias_post' : categorias_post })
+
+def LikeView(request, pk):
+	post = get_object_or_404(Post, id = request.POST.get('post_id'))
+	post.likes.add(request.user)
+	return HttpResponseRedirect(reverse('detalle-publicacion', args=[str(pk)]))

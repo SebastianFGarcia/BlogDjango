@@ -3,7 +3,7 @@
 <h1>Publicación</h1>
 <ul>
     {% for categoria in object_list %}
-    <li>{{ categoria.nombre }} {% if user.is_authenticated %} -
+    <li><a href="{% url 'categorias' categoria.pk %}">{{ categoria.nombre }}</a> {% if user.is_authenticated %} -
         <a href="{% url 'actualizar-categoria' categoria.pk %}">[Editar]</a>
         <a href="{% url 'eliminar-categoria' categoria.pk %}">[Eliminar]</a></li>
     {% endif %} {% endfor %}

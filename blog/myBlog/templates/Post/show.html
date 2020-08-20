@@ -2,7 +2,7 @@
 <h1>
     {{ post.titulo }}</h1>
 <small>By: {{ post.autor.first_name }} {{ post.autor.last_name }} - {{post.fecha_publicacion}} 
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and user.id == post.autor.id %}
     <a  href="{% url 'actualizar-publicacion' post.pk %}">[Editar]</a> 
     <a  href="{% url 'eliminar-publicacion' post.pk %}">[Eliminar]</a><br>
     {% endif %}
@@ -10,4 +10,12 @@
 <hr>
 <br>
 <p class="text-justify">{{ post.cuerpo | safe}}</p><br><br>
-<a class="btn btn-secondary" href="{% url 'home' %}">Volver</a> {% endblock %}
+<a class="btn btn-secondary" href="{% url 'home' %}">Volver</a>
+
+<hr>
+<form action="{% url 'like_post' post.pk %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-sm btn-primary" name='post_id' value="{{ post.id }}">Like</button> - {{total_likes}} likes
+</form>
+
+{% endblock %}

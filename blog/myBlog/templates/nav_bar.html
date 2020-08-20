@@ -6,10 +6,21 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            {% if categorias %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Categorias
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% for item in categorias %}
+                    <a class="dropdown-item" href="{% url 'categorias' item.id %}">{{item}}</a> {% endfor %}
+                </div>
+            </li>
+            {% else %}
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'listar_categoria' %}">Categorias</a>
             </li>
-            {% if user.is_authenticated %}
+            {% endif %} {% if user.is_authenticated %}
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'crear_publicacion' %}">Crear<span class="sr-only">(current)</span></a>
             </li>

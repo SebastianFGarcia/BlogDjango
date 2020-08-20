@@ -1,4 +1,4 @@
-{% extends 'layout.html' %} {% block title %} Eliminar Post {% endblock %} {% block content %} {% if user.is_authenticated %}
+{% extends 'layout.html' %} {% block title %} Eliminar Post {% endblock %} {% block content %} {% if user.is_authenticated and user.id == post.autor.id %}
 <h1 class="h1">Eliminar post</h1>
 <h3 class="h3">Está seguro?</h3>
 <div class="form-group">

@@ -18,9 +18,13 @@ class Post(models.Model):
 	autor = models.ForeignKey(User, on_delete = models.CASCADE)
 	cuerpo = models.TextField()
 	fecha_publicacion = models.DateField(auto_now_add=True)
+	likes = models.ManyToManyField(User, related_name='blog_post')
 
 	def __str__(self):
 		return self.titulo + ' | ' + str(self.autor)
 
 	def get_absolute_url(self):
 		return reverse('detalle-publicacion', args=(str(self.id)))
+	
+	def total_likes(self):
+		return self.likes.count()

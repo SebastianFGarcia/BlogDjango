@@ -6,4 +6,8 @@
         <button class="btn btn-primary" type="submit">Enviar</button>
     </form>
 </div>
+<script>
+    const user_id = "{{ user.id }}";
+    document.getElementById("id_autor").value = user_id;
+</script>
 {% else %} {% include 'Errors/no_ingreso.html' %} {% endif %} {% endblock %}

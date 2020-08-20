@@ -4,7 +4,7 @@
 
 <ul>
     {% for post in categorias_post %}
-    <li><a href="{% url 'detalle-publicacion' post.pk %}">{{ post.titulo }}</a> - {{post.autor.first_name}} {{post.autor.last_name}} - {{post.fecha_publicacion}} {% if user.is_authenticated %} -
+    <li><a href="{% url 'detalle-publicacion' post.pk %}">{{ post.titulo }}</a> - {{post.autor.first_name}} {{post.autor.last_name}} - {{post.fecha_publicacion}} {% if user.is_authenticated and user.id == post.autor.id %} -
         <a href="{% url 'actualizar-publicacion' post.pk %}">[Editar]</a>
         <a href="{% url 'eliminar-publicacion' post.pk %}">[Eliminar]</a></li>
     {% endif %}
