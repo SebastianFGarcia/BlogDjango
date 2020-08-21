@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from datetime import datetime, date
+from ckeditor.fields import RichTextField
 
 class Categoria(models.Model):
 	nombre = models.CharField(max_length = 255)
@@ -16,7 +17,7 @@ class Post(models.Model):
 	titulo_tag = models.CharField(max_length = 255, default="Blog")
 	categorias = models.ForeignKey(Categoria, on_delete= models.CASCADE)
 	autor = models.ForeignKey(User, on_delete = models.CASCADE)
-	cuerpo = models.TextField()
+	cuerpo = RichTextField(blank = True, null = True)
 	fecha_publicacion = models.DateField(auto_now_add=True)
 	likes = models.ManyToManyField(User, related_name='blog_post')
 
