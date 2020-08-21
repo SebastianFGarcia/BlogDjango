@@ -14,8 +14,10 @@
 
 <hr>
 <form action="{% url 'like_post' post.pk %}" method="post">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-sm btn-primary" name='post_id' value="{{ post.id }}">Like</button> - {{total_likes}} likes
-</form>
+    {% csrf_token %} {% if user.is_authenticated %} {% if liked %}
 
+    <button type="submit" class="btn btn-sm btn-danger" name='post_id' value="{{ post.id }}">UnLike</button> {% else %}
+    <button type="submit" class="btn btn-sm btn-primary" name='post_id' value="{{ post.id }}">Like</button> {% endif %} {% else %}
+    <a class="btn btn-sm btn-success" href="{% url 'login' %}">Login</a> - {% endif %} {{total_likes}} likes
+</form>
 {% endblock %}
