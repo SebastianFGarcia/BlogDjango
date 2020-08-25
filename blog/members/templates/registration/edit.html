@@ -1,0 +1,10 @@
+{% extends 'layout.html' %} {% block title %} Editar Perfil {% endblock %} {% block content %}
+<h1 class="h1">Editar perfil</h1>
+<hr>
+<div class="form-group">
+    <form action="" method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
+</div>
+{% endblock %}
