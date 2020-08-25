@@ -3,10 +3,12 @@
 <h1>Publicación</h1>
 <ul>
     {% for post in object_list %}
-    <li><a href="{% url 'detalle-publicacion' post.pk %}">{{ post.titulo }}</a> - {{post.autor.first_name}} {{post.autor.last_name}} - {{post.fecha_publicacion}} -
+    <li>
+        <a href="{% url 'detalle-publicacion' post.pk %}">{{ post.titulo }}</a> - {{post.autor.first_name}} {{post.autor.last_name}} - {{post.fecha_publicacion}} -
         <a href="{% url 'categorias' post.categorias.id %}">{{ post.categorias.nombre }}</a> {% if user.is_authenticated and user.id == post.autor.id %} -
         <a href="{% url 'actualizar-publicacion' post.pk %}">[Editar]</a>
-        <a href="{% url 'eliminar-publicacion' post.pk %}">[Eliminar]</a></li>
+        <a href="{% url 'eliminar-publicacion' post.pk %}">[Eliminar]</a>
+    </li>
     {% endif %}
     <p class="text-justify">{{post.cuerpo | slice:":250" | safe}}....</p>
     {% endfor %}
