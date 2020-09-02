@@ -8,7 +8,8 @@
     {% endif %}
 </small>
 <hr>
-<br>
+<br> {% if post.header_image %}
+<img src="{{ post.header_image.url }}" alt="" width="400"> {% endif %}
 <p class="text-justify">{{ post.cuerpo | safe}}</p><br><br>
 <a class="btn btn-secondary" href="{% url 'home' %}">Volver</a>
 

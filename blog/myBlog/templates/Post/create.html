@@ -1,7 +1,7 @@
 {% extends 'layout.html' %} {% block title %} Crear Post {% endblock %} {% block content %} {% if user.is_authenticated %}
 <h1 class="h1">Crear nuevo post</h1>
 <div class="form-group">
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %} {{form.media}}{{form.as_p}}
         <button class="btn btn-primary" type="submit">Enviar</button>
     </form>

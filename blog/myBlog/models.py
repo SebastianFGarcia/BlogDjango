@@ -18,6 +18,7 @@ class Categoria(models.Model):
 class Post(models.Model):
     titulo = models.CharField(max_length=255)
     titulo_tag = models.CharField(max_length=255, default="Blog")
+    header_image = models.ImageField(null=True, blank= True, upload_to= "images/")
     categorias = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     cuerpo = RichTextField(blank=True, null=True)
